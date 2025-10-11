@@ -15,7 +15,7 @@ CPMAddPackage(
   NAME icu
   VERSION 77.1
   URL https://github.com/unicode-org/icu/archive/refs/tags/release-77-1.zip
-  URL_HASH SHA256=bf9bf92b514dcd9de461961fd922c24a97be4d6e29a0b60b1f8d0bb029e1e449
+  URL_HASH SHA256=e424ba5282d95ad38b52639a08fb82164f0b0cbd7f17b53ae16bf14f8541855f
   DOWNLOAD_ONLY)
 set(ICU_PATH "${icu_SOURCE_DIR}")
 
