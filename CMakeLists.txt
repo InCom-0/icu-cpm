@@ -13,7 +13,7 @@ endif()
 include(cmake/CPM.cmake)
 CPMAddPackage(
   NAME icu
-  VERSION 76.1
+  VERSION 77.1
   URL https://github.com/unicode-org/icu/archive/refs/tags/release-77-1.zip
   URL_HASH SHA256=bf9bf92b514dcd9de461961fd922c24a97be4d6e29a0b60b1f8d0bb029e1e449
   DOWNLOAD_ONLY)
