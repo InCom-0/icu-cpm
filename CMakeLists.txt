@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 3.10...4.0)
 
 if(POLICY CMP0135)
   # policy CMP0135 will use OLD behavior for consistency
-  cmake_policy(SET CMP0135 OLD)
+  # cmake_policy(SET CMP0135 OLD)
 endif()
 
 include(cmake/CPM.cmake)
