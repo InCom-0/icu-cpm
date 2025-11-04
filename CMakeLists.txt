@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 3.10...4.0)
 
 if(POLICY CMP0135)
   # policy CMP0135 will use OLD behavior for consistency
-  cmake_policy(SET CMP0135 OLD)
+  # cmake_policy(SET CMP0135 OLD)
 endif()
 
 include(cmake/CPM.cmake)
@@ -128,10 +128,12 @@ add_library(icu INTERFACE)
 
 # add library
 if(ICU_BUILD_UC)
-  set_source_files_properties(
-    ${UC_SOURCE_FILE_LIST}
-    PROPERTIES COMPILE_FLAGS "-Wno-deprecated-declarations"
-  )
+  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
+    set_source_files_properties(
+      ${UC_SOURCE_FILE_LIST}
+      PROPERTIES COMPILE_FLAGS "-Wno-deprecated-declarations"
+    )
+  endif()
   add_library(uc ${UC_SOURCE_FILE_LIST} ${STUBDATA_SRC})
   add_library(icu::uc ALIAS uc)
   set_target_properties(
@@ -144,10 +146,12 @@ if(ICU_BUILD_UC)
   target_compile_definitions(uc PRIVATE U_COMMON_IMPLEMENTATION)
 endif()
 if(ICU_BUILD_I18N)
-  set_source_files_properties(
-    ${I18N_SOURCE_FILE_LIST}
-    PROPERTIES COMPILE_FLAGS "-Wno-deprecated-declarations"
-  )
+  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
+    set_source_files_properties(
+      ${I18N_SOURCE_FILE_LIST}
+      PROPERTIES COMPILE_FLAGS "-Wno-deprecated-declarations"
+    )
+  endif()
   add_library(i18n ${I18N_SOURCE_FILE_LIST})
   add_library(icu::i18n ALIAS i18n)
   set_target_properties(
@@ -160,10 +164,12 @@ if(ICU_BUILD_I18N)
   target_compile_definitions(i18n PRIVATE U_I18N_IMPLEMENTATION)
 endif()
 if(ICU_BUILD_IO)
-  set_source_files_properties(
-    ${IO_SOURCE_FILE_LIST}
-    PROPERTIES COMPILE_FLAGS "-Wno-deprecated-declarations"
-  )
+  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
+    set_source_files_properties(
+      ${IO_SOURCE_FILE_LIST}
+      PROPERTIES COMPILE_FLAGS "-Wno-deprecated-declarations"
+    )
+  endif()
   add_library(io ${IO_SOURCE_FILE_LIST})
   add_library(icu::io ALIAS io)
   set_target_properties(
