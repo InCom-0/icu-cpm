@@ -144,6 +144,10 @@ if(ICU_BUILD_UC)
     SOVERSION ${ICU_VERSION_MAJOR}.${ICU_VERSION_MINOR}
     DEBUG_POSTFIX "${CMAKE_DEBUG_POSTFIX}")
   target_compile_definitions(uc PRIVATE U_COMMON_IMPLEMENTATION)
+
+  if((CMAKE_CXX_COMPILER_ID MATCHES "Clang") AND (CMAKE_CXX_COMPILER_FRONTEND_VARIANT MATCHES "MSVC"))
+    target_compile_options(uc PRIVATE -Wno-microsoft-include)
+  endif()
 endif()
 if(ICU_BUILD_I18N)
   if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
@@ -162,6 +166,10 @@ if(ICU_BUILD_I18N)
     SOVERSION ${ICU_VERSION_MAJOR}.${ICU_VERSION_MINOR}
     DEBUG_POSTFIX "${CMAKE_DEBUG_POSTFIX}")
   target_compile_definitions(i18n PRIVATE U_I18N_IMPLEMENTATION)
+
+  if((CMAKE_CXX_COMPILER_ID MATCHES "Clang") AND (CMAKE_CXX_COMPILER_FRONTEND_VARIANT MATCHES "MSVC"))
+    target_compile_options(i18n PRIVATE -Wno-microsoft-include)
+  endif()
 endif()
 if(ICU_BUILD_IO)
   if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
@@ -180,6 +188,10 @@ if(ICU_BUILD_IO)
     SOVERSION ${ICU_VERSION_MAJOR}.${ICU_VERSION_MINOR}
     DEBUG_POSTFIX "${CMAKE_DEBUG_POSTFIX}")
   target_compile_definitions(io PRIVATE U_IO_IMPLEMENTATION)
+
+  if((CMAKE_CXX_COMPILER_ID MATCHES "Clang") AND (CMAKE_CXX_COMPILER_FRONTEND_VARIANT MATCHES "MSVC"))
+    target_compile_options(io PRIVATE -Wno-microsoft-include)
+  endif()
 endif()
 
 # set target properties
@@ -199,6 +211,9 @@ if(NOT BUILD_SHARED_LIBS)
         RELEASE_POSTFIX "_static"
         RELWITHDEBINFO_POSTFIX "_static"
       )
+    endif()
+    if((CMAKE_CXX_COMPILER_ID MATCHES "Clang") AND (CMAKE_CXX_COMPILER_FRONTEND_VARIANT MATCHES "MSVC"))
+      add_compile_options(-Wno-microsoft-include)
     endif()
   endif()
   if(ICU_BUILD_I18N)
