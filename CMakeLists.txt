@@ -40,15 +40,15 @@ endif()
 set(CMAKE_CXX_STANDARD 17)
 
 # Set the compiler to support utf8
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+if(CMAKE_CXX_COMPILER_FRONTEND_VARIANT MATCHES "GNU")
   add_compile_options(-finput-charset=UTF-8)
-elseif(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
+elseif(CMAKE_CXX_COMPILER_FRONTEND_VARIANT MATCHES "MSVC")
   add_compile_options(/utf-8)
 endif()
 
-if(MSVC)
-  string(APPEND CMAKE_CXX_FLAGS " /Zc:__cplusplus /MP")
-endif()
+# if(MSVC)
+#   string(APPEND CMAKE_CXX_FLAGS " /Zc:__cplusplus /MP")
+# endif()
 
 
 # ----- Setting -----
