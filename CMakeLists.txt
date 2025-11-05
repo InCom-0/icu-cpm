@@ -46,10 +46,6 @@ elseif(CMAKE_CXX_COMPILER_FRONTEND_VARIANT MATCHES "MSVC")
   add_compile_options(/utf-8)
 endif()
 
-# if(MSVC)
-#   string(APPEND CMAKE_CXX_FLAGS " /Zc:__cplusplus /MP")
-# endif()
-
 
 # ----- Setting -----
 
